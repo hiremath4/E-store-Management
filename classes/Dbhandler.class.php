@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 class Dbhandler {
   private $host;
@@ -12,26 +12,28 @@ class Dbhandler {
   }
 
   private function connect() {
-    // Load database credentials from environment variables (Render-friendly)
-    $this->host = getenv('DB_HOST');
-    $this->user = getenv('DB_USER');
-    $this->pass = getenv('DB_PASS');
-    $this->db   = getenv('DB_NAME');
+    // default XAMPP credentials 
+    $this->host = "https://e-store-management.onrender.com/";
+    $this->user = "root";
+    $this->pass = "";
+    $this->db = "ogtech";
 
-    // Create a new MySQL connection
+    // connect to db
     $this->conn = new mysqli($this->host, $this->user, $this->pass, $this->db);
-
-    // Check connection
-    if ($this->conn->connect_error) {
-      die("Connection failed: " . $this->conn->connect_error);
-    }
-
-    // Return connection
     return $this->conn;
+
+    /* check connection */
+    if (!$this->conn) 
+      die("Connection failed: " . mysqli_connect_error());
   }
 
-  // Optional: getter method for accessing the connection
-  public function getConnection() {
+  public function conn() {
+    // connect to db
+    $this->conn = new mysqli("https://e-store-management.onrender.com/", "root", "", "ogtech");
     return $this->conn;
+
+    /* check connection */
+    if (!$this->conn) 
+      die("Connection failed: " . mysqli_connect_error());
   }
 }
