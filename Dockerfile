@@ -1,13 +1,10 @@
 FROM php:8.2-apache
 
-# Install PHP extensions
 RUN docker-php-ext-install mysqli pdo pdo_mysql
-
-# Enable Apache URL rewriting
 RUN a2enmod rewrite
 
-# Copy project files into the container
-COPY . /var/www/html/
+# Optional: use custom Apache config to support .htaccess
+# COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
-# Set proper permissions
-RUN chown -R www-data:www-data /var/www/html/
+COPY . /var/www/html/
+RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
