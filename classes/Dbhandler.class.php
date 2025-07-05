@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Dbhandler {
   private $host;
@@ -12,11 +12,11 @@ class Dbhandler {
   }
 
   private function connect() {
-    // Use environment variables instead of hardcoding
-    $this->host = getenv('DB_HOST');
-    $this->user = getenv('DB_USER');
-    $this->pass = getenv('DB_PASS');
-    $this->db   = getenv('DB_NAME');
+    // Use environment variables with defaults
+    $this->host = getenv('DB_HOST') ?: 'db';         // ← 'db' is the docker-compose MySQL service name
+    $this->user = getenv('DB_USER') ?: 'user';
+    $this->pass = getenv('DB_PASS') ?: 'pass';
+    $this->db   = getenv('DB_NAME') ?: 'ogtech';
 
     // Create connection
     $this->conn = new mysqli($this->host, $this->user, $this->pass, $this->db);
