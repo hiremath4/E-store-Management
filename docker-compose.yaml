@@ -5,9 +5,9 @@ web:
   volumes:
     - .:/var/www/html
   environment:
-    DB_HOST: db
-    DB_NAME: ogtech
-    DB_USER: user
-    DB_PASS: pass
+    DB_HOST: sql202.infinityfree.com
+    DB_NAME: if0_39392794_sumit
+    DB_USER: if0_39392794
+    DB_PASS: 3fLh7FLRXtDf
   depends_on:
     - db
