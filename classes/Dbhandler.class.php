@@ -13,7 +13,7 @@ class Dbhandler {
 
   private function connect() {
     // default XAMPP credentials 
-    $this->host = "https://e-store-management.onrender.com/";
+    $this->host = "127.0.0.1";
     $this->user = "root";
     $this->pass = "";
     $this->db = "ogtech";
@@ -29,7 +29,7 @@ class Dbhandler {
 
   public function conn() {
     // connect to db
-    $this->conn = new mysqli("https://e-store-management.onrender.com/", "root", "", "ogtech");
+    $this->conn = new mysqli("127.0.0.1", "root", "", "ogtech");
     return $this->conn;
 
     /* check connection */
