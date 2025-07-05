@@ -12,28 +12,24 @@ class Dbhandler {
   }
 
   private function connect() {
-    // default XAMPP credentials 
-    $this->host = "127.0.0.1";
-    $this->user = "root";
-    $this->pass = "";
-    $this->db = "ogtech";
+    // Use environment variables instead of hardcoding
+    $this->host = getenv('DB_HOST');
+    $this->user = getenv('DB_USER');
+    $this->pass = getenv('DB_PASS');
+    $this->db   = getenv('DB_NAME');
 
-    // connect to db
+    // Create connection
     $this->conn = new mysqli($this->host, $this->user, $this->pass, $this->db);
-    return $this->conn;
 
-    /* check connection */
-    if (!$this->conn) 
-      die("Connection failed: " . mysqli_connect_error());
+    // Check connection
+    if ($this->conn->connect_error) {
+      die("Connection failed: " . $this->conn->connect_error);
+    }
+
+    return $this->conn;
   }
 
-  public function conn() {
-    // connect to db
-    $this->conn = new mysqli("127.0.0.1", "root", "", "ogtech");
+  public function getConnection() {
     return $this->conn;
-
-    /* check connection */
-    if (!$this->conn) 
-      die("Connection failed: " . mysqli_connect_error());
   }
 }
